@@ -18,8 +18,8 @@ module.exports = {
         },
       },
       animation: {
-        'accordion-down': 'accordion-down 1s ease-out',
-        'accordion-up': 'accordion-up 1s ease-out',
+        'accordion-down': 'accordion-down 0.4s ease-out',
+        'accordion-up': 'accordion-up 0.4s ease-out',
       },
       backgroundImage: {
         'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
