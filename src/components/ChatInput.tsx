@@ -26,7 +26,7 @@ const ChatInput: FC<ChatInputProps> = ({ className, ...props }) => {
             })
 
             return response.body
-        }, //left off here, onSuccess never happens cos openAI is pending forever 
+        },
         onSuccess: () => {
             console.log("success")
         }
