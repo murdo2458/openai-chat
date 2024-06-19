@@ -5,9 +5,19 @@ module.exports = {
     './src/components/**/*.{js,ts,jsx,tsx,mdx}',
     './src/app/**/*.{js,ts,jsx,tsx,mdx}',
   ],
+
+
   theme: {
     extend: {
       keyframes: {
+        shimmer: { //for button
+          from: {
+            backgroundPosition: "0 0",
+          },
+          to: {
+            backgroundPosition: "-200% 0",
+          },
+        },
         'accordion-down': {
           from: { height: 0 },
           to: { height: 'var(--radix-accordion-content-height)' },
@@ -18,6 +28,7 @@ module.exports = {
         },
       },
       animation: {
+        shimmer: "shimmer 2s linear infinite",//for button
         'accordion-down': 'accordion-down 0.4s ease-out',
         'accordion-up': 'accordion-up 0.4s ease-out',
       },
@@ -29,4 +40,5 @@ module.exports = {
     },
   },
   plugins: [require('@tailwindcss/forms')],
+
 }

@@ -3,6 +3,7 @@ import Providers from '@/components/Providers'
 import Chat from '../components/Chat'
 import './globals.css'
 import { Inter } from 'next/font/google'
+import EditPrompt from '@/components/EditPrompt'
 
 
 const inter = Inter({ subsets: ['latin'] })
@@ -25,6 +26,6 @@ export default function RootLayout({
           {children}
         </body>
       </Providers>
-    </html>
+    </html >
   )
 }
