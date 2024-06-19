@@ -35,13 +35,13 @@ const EditPrompt: FC<EditPromptProps> = ({ }) => {
                 </DialogHeader>
                 <div className="grid gap-4 py-4">
                     <div className="grid grid-cols-4 items-center gap-4">
-                        <Label htmlFor="name" className="text-right">
+                        <Label htmlFor="name" className="text-left">
                             Prompt
                         </Label>
                         <Input
                             id="prompt"
                             defaultValue={chatbotPrompt}
-                            className="text-black col-span-10"
+                            className="text-black row-span-10 col-span-4"
                         />
                     </div>
                 </div>

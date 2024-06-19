@@ -10,7 +10,7 @@ module.exports = {
   theme: {
     extend: {
       keyframes: {
-        shimmer: { //for button
+        shimmer: {
           from: {
             backgroundPosition: "0 0",
           },
@@ -28,7 +28,7 @@ module.exports = {
         },
       },
       animation: {
-        shimmer: "shimmer 2s linear infinite",//for button
+        shimmer: "shimmer 2s linear infinite",
         'accordion-down': 'accordion-down 0.4s ease-out',
         'accordion-up': 'accordion-up 0.4s ease-out',
       },
