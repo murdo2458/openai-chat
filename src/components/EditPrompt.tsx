@@ -14,12 +14,20 @@ import { Label } from "@/components/ui/label"
 import { Input } from "@/components/ui/input"
 import { chatbotPrompt } from '@/app/helpers/constants/chatbot-prompt'
 import { Textarea } from "@/components/ui/textarea"
+import { neon } from '@neondatabase/serverless';
 
 interface EditPromptProps extends HTMLAttributes<HTMLDivElement> {
 
 }
 
 const EditPrompt: FC<EditPromptProps> = ({ }) => {
+    // async function create(formData: FormData) {
+    //     "use server";
+    //     const sql = neon($process.env.POSTGRES_URL);
+    //     await sql`CREATE TABLE IF NOT EXISTS comments (comment TEXT)`;
+    //     const comment = formData.get("comment");
+    //     await sql("INSERT INTO comments (comment) VALUES ($1)", [comment]);
+    // }
     return (
         <Dialog>
             <DialogTrigger asChild>
@@ -44,7 +52,8 @@ const EditPrompt: FC<EditPromptProps> = ({ }) => {
                     </div>
                 </div>
                 <DialogFooter>
-                    <Button variant='outline'>
+                    <Button variant='outline'
+                    >
                         Save changes</Button>
                 </DialogFooter>
             </DialogContent>
