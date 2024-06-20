@@ -23,11 +23,6 @@ export default function RootLayout({
         <body className={inter.className}>
           <Chat />
           {children}
-
-          <div className="absolute inset-0 flex justify-center items-center">
-            <EditPrompt />
-          </div>
-
         </body>
       </Providers>
     </html >

@@ -1,4 +1,4 @@
-import { FC } from 'react'
+import { FC, HTMLAttributes } from 'react'
 import { Button } from "@/components/ui/button"
 import {
     Dialog,
@@ -13,8 +13,9 @@ import {
 import { Label } from "@/components/ui/label"
 import { Input } from "@/components/ui/input"
 import { chatbotPrompt } from '@/app/helpers/constants/chatbot-prompt'
+import { Textarea } from "@/components/ui/textarea"
 
-interface EditPromptProps {
+interface EditPromptProps extends HTMLAttributes<HTMLDivElement> {
 
 }
 
@@ -23,7 +24,7 @@ const EditPrompt: FC<EditPromptProps> = ({ }) => {
         <Dialog>
             <DialogTrigger asChild>
                 <Button variant='default'>
-                    Edit Prompt</Button>
+                    View Prompt</Button>
             </DialogTrigger>
             <DialogContent className="sm:max-w-[425px]">
                 <DialogHeader>
@@ -33,15 +34,13 @@ const EditPrompt: FC<EditPromptProps> = ({ }) => {
                     </DialogDescription>
                 </DialogHeader>
                 <div className="grid gap-4 py-4">
-                    <div className="grid grid-cols-4 items-center gap-4">
+                    <div className="grid grid-cols-4 grid-rows-50 items-center gap-4">
                         <Label htmlFor="name" className="text-left">
                             Prompt
                         </Label>
-                        <Input
-                            id="prompt"
-                            defaultValue={chatbotPrompt}
-                            className="text-black row-span-10 col-span-4"
-                        />
+                        <Textarea
+                            className="text-black row-span-10 col-span-10"
+                            value={chatbotPrompt} />
                     </div>
                 </div>
                 <DialogFooter>
