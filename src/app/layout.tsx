@@ -1,4 +1,3 @@
-
 import Providers from '@/components/Providers'
 import Chat from '../components/Chat'
 import './globals.css'
@@ -24,6 +23,11 @@ export default function RootLayout({
         <body className={inter.className}>
           <Chat />
           {children}
+
+          <div className="absolute inset-0 flex justify-center items-center">
+            <EditPrompt />
+          </div>
+
         </body>
       </Providers>
     </html >

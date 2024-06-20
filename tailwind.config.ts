@@ -1,15 +1,16 @@
-/** @type {import('tailwindcss').Config} */
-module.exports = {
+import type { Config } from "tailwindcss"
+
+const config = {
+  darkMode: ["class"],
   content: [
     './src/pages/**/*.{js,ts,jsx,tsx,mdx}',
     './src/components/**/*.{js,ts,jsx,tsx,mdx}',
     './src/app/**/*.{js,ts,jsx,tsx,mdx}',
   ],
-
-
   theme: {
     extend: {
       keyframes: {
+
         shimmer: {
           from: {
             backgroundPosition: "0 0",
@@ -18,6 +19,7 @@ module.exports = {
             backgroundPosition: "-200% 0",
           },
         },
+
         'accordion-down': {
           from: { height: 0 },
           to: { height: 'var(--radix-accordion-content-height)' },
@@ -29,8 +31,8 @@ module.exports = {
       },
       animation: {
         shimmer: "shimmer 2s linear infinite",
-        'accordion-down': 'accordion-down 0.4s ease-out',
-        'accordion-up': 'accordion-up 0.4s ease-out',
+        'accordion-down': 'accordion-down 0.3s ease-out',
+        'accordion-up': 'accordion-up 0.3s ease-out',
       },
       backgroundImage: {
         'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
@@ -40,5 +42,6 @@ module.exports = {
     },
   },
   plugins: [require('@tailwindcss/forms')],
-
 }
+
+export default config 
