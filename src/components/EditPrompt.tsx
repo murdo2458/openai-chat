@@ -10,14 +10,11 @@ import {
     DialogTitle,
     DialogTrigger,
 } from "@/components/ui/dialog"
-import { Textarea } from './ui/textarea';
 import { nanoid } from 'nanoid'
-import { Prompt } from '@/lib/Validators/prompt'
-import queryString from 'query-string';
+import { sql } from '@vercel/postgres';
 
 
 interface EditPromptProps {
-
 }
 
 export const EditPrompt: FC<EditPromptProps> = ({ }) => {
@@ -32,7 +29,7 @@ export const EditPrompt: FC<EditPromptProps> = ({ }) => {
 
         try {
             const prompt = new FormData(event.currentTarget)
-            const id = nanoid()
+            const id = 'latest' //should be nanoid() to generate unique but I need that returned 
             const response = await fetch('/api/addprompt', {
                 method: 'POST',
                 body: (JSON.stringify({ id: id, prompt: prompt.get('prompt') })),
@@ -48,22 +45,22 @@ export const EditPrompt: FC<EditPromptProps> = ({ }) => {
         }
         finally {
             setIsLoading(false)
+
         }
     }
 
 
-    return (
 
+    return (
         <Dialog>
             <DialogTrigger className='px-4 py-2 bg-white hover:bg-indigo-600 text-black inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50'>Open</DialogTrigger>
             <DialogContent>
                 <DialogHeader>
                     <DialogTitle>Edit Prompt</DialogTitle>
-
                     <div>
                         {error && <div style={{ color: 'red' }}>{error}</div>}
                         <form onSubmit={onSubmit}>
-                            <input type="text" name="prompt" className='text-black' />
+                            <input type="text" name="prompt" className='text-black' placeholder="enter a prompt" />
                             <button type="submit" disabled={isLoading}>
                                 {isLoading ? 'Loading...' : 'Submit'}
                             </button>
@@ -78,5 +75,4 @@ export const EditPrompt: FC<EditPromptProps> = ({ }) => {
 
 }
 
-
-
+export default EditPrompt

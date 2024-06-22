@@ -6,8 +6,12 @@ import {
     OpenAIStreamPayload,
 } from '@/lib/openai-stream'
 import { MessageArraySchema } from '@/lib/Validators/message'
+import { sql } from '@vercel/postgres';
+
 
 export async function POST(req: Request) {
+
+
     const { messages } = await req.json()
 
     const parsedMessages = MessageArraySchema.parse(messages)
@@ -19,9 +23,12 @@ export async function POST(req: Request) {
         }
     })
 
+    const prompt = await sql`SELECT prompt FROM prompts WHERE id = 'latest';`; //this is dumb af, overwriting row with id='latest' so it works but just always the last person to put anything in the box
+    console.log(prompt);
+
     outboundMessages.unshift({
         role: 'system',
-        content: chatbotPrompt,//where editable prompt needs to now go
+        content: JSON.stringify(prompt), //returning prompt as string based on DB query above, not quite right as it still includes all the other json shite
     })
 
     const payload: OpenAIStreamPayload = {
