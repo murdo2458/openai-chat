@@ -1,4 +1,5 @@
-import EditPrompt from "@/components/EditPrompt";
+import { EditPrompt } from "@/components/EditPrompt";
+
 
 export default function Home() {
   return (

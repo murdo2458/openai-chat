@@ -21,7 +21,7 @@ export async function POST(req: Request) {
 
     outboundMessages.unshift({
         role: 'system',
-        content: chatbotPrompt,
+        content: chatbotPrompt,//where editable prompt needs to now go
     })
 
     const payload: OpenAIStreamPayload = {

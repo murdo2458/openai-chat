@@ -1,46 +1,82 @@
-import { FC, HTMLAttributes } from 'react'
-import { Button } from "@/components/ui/button"
+"use client"
+
+import { FC, HTMLAttributes, useState, FormEvent } from 'react'
+import React from 'react'
 import {
     Dialog,
-    DialogClose,
     DialogContent,
     DialogDescription,
-    DialogFooter,
     DialogHeader,
     DialogTitle,
     DialogTrigger,
 } from "@/components/ui/dialog"
-import { Label } from "@/components/ui/label"
-import { Input } from "@/components/ui/input"
-import { chatbotPrompt } from '@/app/helpers/constants/chatbot-prompt'
-import { Textarea } from "@/components/ui/textarea"
-import { neon } from '@neondatabase/serverless';
-import postgres from 'postgres';
+import { Textarea } from './ui/textarea';
+import { nanoid } from 'nanoid'
+import { Prompt } from '@/lib/Validators/prompt'
+import queryString from 'query-string';
 
 
 interface EditPromptProps {
 
 }
 
-const EditPrompt: FC<EditPromptProps> = ({ }) => {
+export const EditPrompt: FC<EditPromptProps> = ({ }) => {
 
-    async function create(formData: FormData) {
-        "use server";
-        const sql = neon("postgres://default:wk1ojG5JcHzR@ep-dry-pond-a4vj7rkg-pooler.us-east-1.aws.neon.tech/verceldb?sslmode=require");
-        await sql`CREATE TABLE IF NOT EXISTS comments (comment TEXT)`;
-        const comment = formData.get("comment");
-        await sql("INSERT INTO comments (comment) VALUES ($1)", [comment]);
+    const [isLoading, setIsLoading] = useState<boolean>(false)
+    const [error, setError] = useState<string | null>(null)
 
+    async function onSubmit(event: FormEvent<HTMLFormElement>) {
+        event.preventDefault()
+        setIsLoading(true)
+        setError(null)
+
+        try {
+            const prompt = new FormData(event.currentTarget)
+            const id = nanoid()
+            const response = await fetch('/api/addprompt', {
+                method: 'POST',
+                body: (JSON.stringify({ id: id, prompt: prompt.get('prompt') })),
+            })
+
+            if (!response.ok) {
+                throw new Error('Request failed')
+            }
+        }
+
+        catch (error) {
+            setError('error')
+        }
+        finally {
+            setIsLoading(false)
+        }
     }
+
+
     return (
-        <form action={create}>
-            <input type="text" placeholder="write a comment" name="comment" />
-            <button type="submit">Submit</button>
-        </form>
+
+        <Dialog>
+            <DialogTrigger className='px-4 py-2 bg-white hover:bg-indigo-600 text-black inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50'>Open</DialogTrigger>
+            <DialogContent>
+                <DialogHeader>
+                    <DialogTitle>Edit Prompt</DialogTitle>
+
+                    <div>
+                        {error && <div style={{ color: 'red' }}>{error}</div>}
+                        <form onSubmit={onSubmit}>
+                            <input type="text" name="prompt" className='text-black' />
+                            <button type="submit" disabled={isLoading}>
+                                {isLoading ? 'Loading...' : 'Submit'}
+                            </button>
+                        </form>
+                    </div>
+
+                </DialogHeader>
+            </DialogContent>
+        </Dialog >
     );
+
+
 }
 
-
-export default EditPrompt
 
 
