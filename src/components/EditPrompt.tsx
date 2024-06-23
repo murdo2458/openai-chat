@@ -79,7 +79,7 @@ export const EditPrompt: FC<EditPromptProps> = ({ }) => {
         <Dialog>
 
             <DialogTrigger>
-                <Button variant='default'>Edit Profile</Button>
+                <Button variant='default'>Edit Prompt</Button>
             </DialogTrigger>
             <DialogContent>
                 <DialogHeader>

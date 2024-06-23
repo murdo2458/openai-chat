@@ -12,7 +12,7 @@ export default function Home() {
               AI Support Chatbot
             </h1>
             <p className='mt-6 text-base text-zinc-400'>
-              Powered by OpenAI and running the latest GPT-4o model. View the chatbot prompt and input data below.
+              Powered by OpenAI and running the latest GPT-4o model. Edit the chatbot prompt and view input data below.
             </p>
             <div className='mt-10 flex items-center justify-center gap-x-6'>
               <EditPrompt />
