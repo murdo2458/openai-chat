@@ -15,7 +15,7 @@ export default function RootLayout({
   return (
     <html lang='en'>
       <Providers>
-        <body className="overflow-hidden">
+        <body>
           <Chat />
           {children}
         </body>

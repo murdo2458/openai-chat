@@ -29,9 +29,9 @@ const ChatMessages: FC<ChatMessagesProps> = ({ className, ...props }) => {
                             'order-2 items-start': !message.isUserMessage,
                         }
                         )}>
-                            <p className={cn('px-4 py-2 rounded-lg', {
-                                'bg-blue-600 text-white': message.isUserMessage,
-                                'bg-gray-200 text-gray-900': !message.isUserMessage,
+                            <p className={cn('px-4 py-2', {
+                                'bg-[#0078FE] text-white rounded-t-lg rounded-l-lg': message.isUserMessage,
+                                'bg-gray-200 text-gray-900 rounded-t-lg rounded-r-lg': !message.isUserMessage,
                             })}>
                                 <MarkdownLite text={message.text} />
                             </p>

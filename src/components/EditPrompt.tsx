@@ -1,5 +1,3 @@
-"use client"
-
 import { FC, HTMLAttributes, useState, FormEvent } from 'react'
 import React from 'react'
 import {
@@ -32,10 +30,8 @@ interface EditPromptProps {
 
 export const EditPrompt: FC<EditPromptProps> = ({ }) => {
 
-
     const FormSchema = z.object({
-        prompt: z
-            .string()
+        prompt: z.string()
     })
 
     const form = useForm<z.infer<typeof FormSchema>>({
@@ -73,11 +69,8 @@ export const EditPrompt: FC<EditPromptProps> = ({ }) => {
         }
     }
 
-
-
     return (
         <Dialog>
-
             <DialogTrigger>
                 <Button variant='default'>Edit Prompt</Button>
             </DialogTrigger>
@@ -87,7 +80,7 @@ export const EditPrompt: FC<EditPromptProps> = ({ }) => {
                     <DialogDescription className='py-3 text-zinc-400'>
                         Passed with every user message to give context on how to answer questions and digest input data.
                     </DialogDescription>
-
+                    {error && <div className='py-2' style={{ color: 'red' }}>{error}</div>}
                     <Form {...form}>
                         <form onSubmit={onSubmit} className="w-full space-y-6">
                             <FormField
@@ -107,24 +100,12 @@ export const EditPrompt: FC<EditPromptProps> = ({ }) => {
                                     </FormItem>
                                 )}
                             />
-                            {error && <div style={{ color: 'red' }}>{error}</div>}
-                            <Button type="submit">
+                            <Button type="submit" className='flex right-4 bottom-4'>
                                 {isLoading ? 'Submitting...' : 'Submit'}
                             </Button>
+
                         </form>
                     </Form>
-
-
-                    {/* <div>
-                        {error && <div style={{ color: 'red' }}>{error}</div>}
-                        <form onSubmit={onSubmit}>
-                            <input type="text" name="prompt" className='text-black' placeholder="enter a prompt" />
-                        </form>
-                        <button type="submit" disabled={isLoading}>
-                            {isLoading ? 'Loading...' : 'Submit'}
-                        </button>
-                    </div> */}
-
                 </DialogHeader>
             </DialogContent>
         </Dialog >
