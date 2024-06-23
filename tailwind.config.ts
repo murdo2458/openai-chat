@@ -10,16 +10,6 @@ const config = {
   theme: {
     extend: {
       keyframes: {
-
-        shimmer: {
-          from: {
-            backgroundPosition: "0 0",
-          },
-          to: {
-            backgroundPosition: "-200% 0",
-          },
-        },
-
         'accordion-down': {
           from: { height: 0 },
           to: { height: 'var(--radix-accordion-content-height)' },
@@ -30,9 +20,8 @@ const config = {
         },
       },
       animation: {
-        shimmer: "shimmer 2s linear infinite",
-        'accordion-down': 'accordion-down 0.3s ease-out',
-        'accordion-up': 'accordion-up 0.3s ease-out',
+        'accordion-down': 'accordion-down 0.2s ease-out',
+        'accordion-up': 'accordion-up 0.2s ease-out',
       },
       backgroundImage: {
         'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
@@ -41,7 +30,9 @@ const config = {
       },
     },
   },
-  plugins: [require('@tailwindcss/forms')],
+  plugins: [require('@tailwindcss/forms'),
+  require('tailwindcss-animate'),
+  ],
 }
 
 export default config 

@@ -11,13 +11,37 @@ import {
     DialogTrigger,
 } from "@/components/ui/dialog"
 import { nanoid } from 'nanoid'
-import { sql } from '@vercel/postgres';
+import { Textarea } from "@/components/ui/textarea"
+import { Button } from "@/components/ui/button"
+import {
+    Form,
+    FormControl,
+    FormDescription,
+    FormField,
+    FormItem,
+    FormLabel,
+    FormMessage,
+} from "@/components/ui/form"
+import { zodResolver } from "@hookform/resolvers/zod"
+import { useForm } from "react-hook-form"
+import { z } from "zod"
 
 
 interface EditPromptProps {
 }
 
 export const EditPrompt: FC<EditPromptProps> = ({ }) => {
+
+
+    const FormSchema = z.object({
+        prompt: z
+            .string()
+    })
+
+    const form = useForm<z.infer<typeof FormSchema>>({
+        resolver: zodResolver(FormSchema),
+    },
+    )
 
     const [isLoading, setIsLoading] = useState<boolean>(false)
     const [error, setError] = useState<string | null>(null)
@@ -53,19 +77,53 @@ export const EditPrompt: FC<EditPromptProps> = ({ }) => {
 
     return (
         <Dialog>
-            <DialogTrigger className='px-4 py-2 bg-white hover:bg-indigo-600 text-black inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50'>Open</DialogTrigger>
+
+            <DialogTrigger>
+                <Button variant='default'>Edit Profile</Button>
+            </DialogTrigger>
             <DialogContent>
                 <DialogHeader>
                     <DialogTitle>Edit Prompt</DialogTitle>
-                    <div>
+                    <DialogDescription className='py-3 text-zinc-400'>
+                        Passed with every user message to give context on how to answer questions and digest input data.
+                    </DialogDescription>
+
+                    <Form {...form}>
+                        <form onSubmit={onSubmit} className="w-full space-y-6">
+                            <FormField
+                                control={form.control}
+                                name="prompt"
+                                render={({ field }) => (
+                                    <FormItem>
+                                        <FormControl>
+                                            <Textarea
+                                                placeholder="Enter a prompt..."
+                                                className="resize-auto text-black w-full"
+                                                {...field}
+                                                value={field.value}
+                                            />
+                                        </FormControl>
+                                        <FormMessage />
+                                    </FormItem>
+                                )}
+                            />
+                            {error && <div style={{ color: 'red' }}>{error}</div>}
+                            <Button type="submit">
+                                {isLoading ? 'Submitting...' : 'Submit'}
+                            </Button>
+                        </form>
+                    </Form>
+
+
+                    {/* <div>
                         {error && <div style={{ color: 'red' }}>{error}</div>}
                         <form onSubmit={onSubmit}>
                             <input type="text" name="prompt" className='text-black' placeholder="enter a prompt" />
-                            <button type="submit" disabled={isLoading}>
-                                {isLoading ? 'Loading...' : 'Submit'}
-                            </button>
                         </form>
-                    </div>
+                        <button type="submit" disabled={isLoading}>
+                            {isLoading ? 'Loading...' : 'Submit'}
+                        </button>
+                    </div> */}
 
                 </DialogHeader>
             </DialogContent>

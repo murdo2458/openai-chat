@@ -1,3 +1,4 @@
+"use client"
 import { EditPrompt } from "@/components/EditPrompt";
 
 

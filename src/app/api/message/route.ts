@@ -1,5 +1,6 @@
 
 import { chatbotPrompt } from '@/app/helpers/constants/chatbot-prompt'
+import { inputData } from '@/app/helpers/constants/input-data';
 import {
     ChatGPTMessage,
     OpenAIStream,
@@ -28,7 +29,7 @@ export async function POST(req: Request) {
 
     outboundMessages.unshift({
         role: 'system',
-        content: JSON.stringify(prompt), //returning prompt as string based on DB query above, not quite right as it still includes all the other json shite
+        content: 'use this data to assist in answering questions: ' + inputData + JSON.stringify(prompt), //returning prompt as string based on DB query above, not quite right as it still includes all the other json shite
     })
 
     const payload: OpenAIStreamPayload = {
