@@ -21,10 +21,10 @@ export default function Home() {
         <div className='mx-auto max-w-7xl px-6 lg:px-8'>
           <div className='mx-auto max-w-2xl text-center'>
             <h1 className='text-4xl font-bold tracking-tight text-zinc-100 sm:text-6xl'>
-              AI Support Chatbot
+              Your AI Chatbot
             </h1>
             <p className='mt-6 text-base text-zinc-400'>
-              Powered by OpenAI and running the latest GPT-4o model. Edit the chatbot prompt and view input data below.
+              Powered by OpenAI and running the latest GPT-4o model. Edit the prompt and view input data below.
             </p>
             <div className='mt-10 flex items-center justify-center gap-x-6'>
               <EditPrompt />
