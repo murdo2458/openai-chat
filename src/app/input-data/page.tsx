@@ -6,7 +6,7 @@ export default function newpg() {
 
     return (
         <div>
-            <p className="text-white text-xl">Hello World here's some unreadable input data:</p>
+            <p className="text-white text-xl">Hello World heres some unreadable input data:</p>
             <br></br>
             <p className="text-white">{inputString}</p>
         </div>
