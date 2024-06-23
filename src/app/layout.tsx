@@ -1,10 +1,6 @@
 import Providers from '@/components/Providers'
 import Chat from '../components/Chat'
 import './globals.css'
-import { Inter } from 'next/font/google'
-
-
-const inter = Inter({ subsets: ['latin'] })
 
 export const metadata = {
   title: 'Chatbot Project',
@@ -19,7 +15,7 @@ export default function RootLayout({
   return (
     <html lang='en'>
       <Providers>
-        <body className={inter.className}>
+        <body className="overflow-hidden">
           <Chat />
           {children}
         </body>
