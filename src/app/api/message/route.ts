@@ -24,7 +24,8 @@ export async function POST(req: Request) {
         }
     })
 
-    const prompt = await sql`SELECT prompt FROM prompts WHERE id = 'latest';`; //this is dumb af, overwriting row with id='latest' so it works but just always the last person to put anything in the box
+    const prompt = 'you are a helpful chatbot'
+    // await sql`SELECT prompt FROM prompts WHERE id = 'latest';`; //this is dumb af, overwriting row with id='latest' so it works but just always the last person to put anything in the box
     console.log(prompt);
 
     outboundMessages.unshift({
